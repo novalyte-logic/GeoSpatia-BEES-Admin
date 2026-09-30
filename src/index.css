@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: -0.011em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  body.dark-theme {
+    background-color: #070D18;
+    color: #F1F5F9;
+  }
+
+  body.light-theme {
+    background-color: #F8FAFC;
+    color: #0F172A;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-feature-settings: 'tnum' on, 'zero' on;
+  }
+}
+
+/* Geospatial Labs GIS Grid Background */
+.dark-theme .bg-grid-geospatial,
+body.dark-theme .bg-grid-geospatial,
+.bg-grid-geospatial {
+  background-image: 
+    radial-gradient(rgba(16, 185, 129, 0.07) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.light-theme .bg-grid-geospatial,
+body.light-theme .bg-grid-geospatial {
+  background-image: 
+    radial-gradient(rgba(5, 150, 105, 0.12) 1px, transparent 1px),
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Radar sweep subtle ambient animation */
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-radar-slow {
+  animation: radar-sweep 16s linear infinite;
+}
+
+/* Custom technical scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B1324;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+
+/* Light Theme Scrollbars */
+.light-theme ::-webkit-scrollbar-track,
+body.light-theme ::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+.light-theme ::-webkit-scrollbar-thumb,
+body.light-theme ::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.light-theme ::-webkit-scrollbar-thumb:hover,
+body.light-theme ::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+
+/* =========================================================
+   GEOSPATIAL LABS LIGHT THEME COMPONENT OVERRIDES
+   ========================================================= */
+
+.light-theme .bg-\[\#0B1424\],
+.light-theme .bg-\[\#0B1424\]\/95,
+.light-theme .bg-\[\#0D1829\],
+.light-theme .bg-\[\#0D1829\]\/90,
+.light-theme .bg-\[\#0B1528\],
+.light-theme .bg-\[\#0E1B33\] {
+  background-color: #FFFFFF !important;
+}
+
+.light-theme .bg-\[\#070D18\],
+.light-theme .bg-\[\#070D18\]\/90,
+.light-theme .bg-\[\#060D1A\] {
+  background-color: #F8FAFC !important;
+}
+
+.light-theme .border-slate-800,
+.light-theme .border-slate-800\/90,
+.light-theme .border-slate-800\/80,
+.light-theme .border-slate-800\/50,
+.light-theme .border-slate-700,
+.light-theme .border-slate-700\/80 {
+  border-color: #E2E8F0 !important;
+}
+
+.light-theme .text-white {
+  color: #0F172A !important;
+}
+
+.light-theme .text-slate-100,
+.light-theme .text-slate-200 {
+  color: #1E293B !important;
+}
+
+.light-theme .text-slate-300 {
+  color: #334155 !important;
+}
+
+.light-theme .text-slate-400 {
+  color: #64748B !important;
+}
+
+.light-theme .text-emerald-400 {
+  color: #047857 !important;
+}
+
+.light-theme .text-cyan-400,
+.light-theme .text-cyan-300 {
+  color: #0369A1 !important;
+}
+
+.light-theme .text-amber-400,
+.light-theme .text-amber-300 {
+  color: #B45309 !important;
+}
+
+.light-theme .text-rose-400,
+.light-theme .text-rose-300 {
+  color: #BE123C !important;
+}
+
+.light-theme .bg-emerald-950,
+.light-theme .bg-emerald-950\/80,
+.light-theme .bg-emerald-950\/90,
+.light-theme .bg-emerald-950\/40 {
+  background-color: #ECFDF5 !important;
+}
+
+.light-theme .border-emerald-800,
+.light-theme .border-emerald-800\/80,
+.light-theme .border-emerald-800\/60,
+.light-theme .border-emerald-700 {
+  border-color: #A7F3D0 !important;
+}
+
+.light-theme .bg-cyan-950,
+.light-theme .bg-cyan-950\/80,
+.light-theme .bg-cyan-950\/70,
+.light-theme .bg-cyan-950\/40 {
+  background-color: #F0F9FF !important;
+}
+
+.light-theme .border-cyan-800,
+.light-theme .border-cyan-800\/80,
+.light-theme .border-cyan-800\/60,
+.light-theme .border-cyan-800\/40,
+.light-theme .border-cyan-700 {
+  border-color: #BAE6FD !important;
+}
+
+.light-theme .bg-amber-950,
+.light-theme .bg-amber-950\/80,
+.light-theme .bg-amber-950\/40,
+.light-theme .bg-amber-950\/30 {
+  background-color: #FFFBEB !important;
+}
+
+.light-theme .border-amber-800,
+.light-theme .border-amber-800\/80,
+.light-theme .border-amber-800\/50 {
+  border-color: #FDE68A !important;
+}
+
+.light-theme .bg-rose-950,
+.light-theme .bg-rose-950\/80,
+.light-theme .bg-rose-950\/60,
+.light-theme .bg-rose-950\/40,
+.light-theme .bg-rose-950\/30,
+.light-theme .bg-\[\#190B14\] {
+  background-color: #FFF1F2 !important;
+}
+
+.light-theme .border-rose-800,
+.light-theme .border-rose-800\/80,
+.light-theme .border-rose-800\/70,
+.light-theme .border-rose-900\/80 {
+  border-color: #FECDD3 !important;
+}
+
+.light-theme .bg-\[\#19140B\] {
+  background-color: #FFFBEB !important;
+}
+
+/* Inputs and Selects in Light Theme */
+.light-theme input[type="text"],
+.light-theme select,
+.light-theme textarea {
+  color: #0F172A !important;
+}
+
+.light-theme input::placeholder {
+  color: #94A3B8 !important;
+}

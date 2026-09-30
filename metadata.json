@@ -1,0 +1,6 @@
+{
+  "name": "Geospatial Labs - Revenue Command Center",
+  "description": "Private evidence-first revenue command center and human control plane for California BESS infrastructure intelligence, Hermes agent ingestion, and qualified outreach.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
