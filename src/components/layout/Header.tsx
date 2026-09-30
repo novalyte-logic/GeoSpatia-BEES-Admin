@@ -1,7 +1,8 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
 import { GlobalHeaderSearch } from './GlobalHeaderSearch';
-import { CheckCircle2, RotateCcw, Terminal, Radar, Zap, Sun, Moon } from 'lucide-react';
+import { SourceStatusIndicator } from './SourceStatusIndicator';
+import { CheckCircle2, RotateCcw, Terminal, Radar, Zap, Sun, Moon, Inbox } from 'lucide-react';
 
 interface HeaderProps {
   onOpenAcceptanceTest: () => void;
@@ -15,7 +16,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAcceptanceTest, onOpenHerm
   const pendingOutreach = outreachDrafts.filter((d) => d.status === 'Needs Review' || d.status === 'Draft').length;
 
   const tabLabels: Record<string, { title: string; subtitle: string }> = {
-    today: { title: "Today's Revenue Queue", subtitle: 'California BESS Market Control Plane · Daily Operations' },
+    today: { title: "Today's Diligence Queue", subtitle: 'California BESS Market Control Plane · Daily Operations' },
+    requests: { title: 'Site-Screen Requests Workspace', subtitle: 'Intake, Scope Qualification, Connector Run & Intelligence Brief Delivery' },
     opportunities: { title: 'Opportunities Pipeline', subtitle: 'Explainable Qualification & Deal Progression' },
     projects: { title: 'California BESS Projects', subtitle: 'Canonical Infrastructure Intelligence · PostGIS System of Record' },
     evidence: { title: 'Source Evidence Ledger', subtitle: 'Immutable Chain of Provenance · Principles #1 & #2' },
@@ -57,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAcceptanceTest, onOpenHerm
                       : 'text-cyan-800 bg-cyan-50 border-cyan-200'
                   }`}
                 >
-                  LIVE GRID RADAR
+                  CALIFORNIA BESS CONTROL PLANE
                 </span>
               </div>
               <h1 className={`text-base font-bold leading-tight mt-0.5 ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
@@ -71,9 +73,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAcceptanceTest, onOpenHerm
             <GlobalHeaderSearch />
           </div>
 
-          {/* Right Action Buttons */}
+          {/* Right Action Buttons with Live Source Status Indicator */}
           <div className="flex items-center gap-2 shrink-0">
-            {/* Theme Toggle Switch (Segmented Light / Dark Mode just like geospatialabs.com) */}
+            {/* Live Source Status Indicator (Verifiable telemetry) */}
+            <SourceStatusIndicator />
+
+            {/* Theme Toggle Switch */}
             <div
               className={`flex items-center p-0.5 rounded-lg border font-mono text-xs transition-colors ${
                 theme === 'dark'

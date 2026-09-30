@@ -1,5 +1,6 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
+import { YellowBlinkMockMark } from '../common/YellowBlinkMockMark';
 import { Zap, DollarSign, ShieldCheck, AlertTriangle, Users, FileCheck2, ArrowUpRight, Radar, Activity, Gauge } from 'lucide-react';
 
 export const KpiMetricGrid: React.FC = () => {
@@ -31,14 +32,13 @@ export const KpiMetricGrid: React.FC = () => {
               : 'bg-white border-slate-200 shadow-xs hover:border-emerald-500 hover:shadow-sm'
           }`}
         >
-          {/* Subtle corner reticle accent */}
           <div className={`absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 ${isDark ? 'border-emerald-400' : 'border-emerald-600'}`}></div>
           <div className={`absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 ${isDark ? 'border-emerald-400' : 'border-emerald-600'}`}></div>
 
           <div>
             <div className={`flex items-center justify-between text-xs font-mono ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
               <span className="uppercase tracking-wider font-semibold flex items-center gap-1.5">
-                <Radar className={`w-3.5 h-3.5 ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`} />
+                <Zap className={`w-3.5 h-3.5 ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`} />
                 <span>Tracked BESS Capacity</span>
               </span>
               <div
@@ -57,65 +57,58 @@ export const KpiMetricGrid: React.FC = () => {
                 {totalMw.toLocaleString()} <span className={`text-base font-normal ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>MW</span>
               </div>
               <div className={`text-xs font-mono font-semibold mt-1 flex items-center gap-1.5 ${isDark ? 'text-emerald-400' : 'text-emerald-700'}`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-emerald-400' : 'bg-emerald-600'}`}></span>
-                <span>{totalMwh.toLocaleString()} MWh Storage Energy</span>
+                <span className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-emerald-400' : 'bg-emerald-600'} animate-pulse`}></span>
+                <span>{projects.length} Verified California BESS Sites</span>
               </div>
             </div>
           </div>
 
           <div className={`pt-3 border-t text-[11px] flex items-center justify-between font-mono ${isDark ? 'border-slate-800/80 text-slate-400' : 'border-slate-100 text-slate-500'}`}>
-            <span>5 CA Baseline Assets</span>
-            <span className={`font-semibold ${isDark ? 'text-emerald-400' : 'text-emerald-700'}`}>100% PostGIS Verified</span>
+            <span>Total Storage: {totalMwh.toLocaleString()} MWh</span>
+            <span className={`font-semibold ${isDark ? 'text-emerald-400' : 'text-emerald-700'}`}>CAISO Verified</span>
           </div>
         </div>
 
-        {/* KPI 2: Diligence Pipeline Commercial Value */}
+        {/* KPI 2: Diligence Pipeline Value (ESTIMATED / SYNTHETIC) */}
         <div
           className={`relative border rounded-2xl p-5 transition-all flex flex-col justify-between group overflow-hidden ${
             isDark
-              ? 'bg-[#0B1424]/95 border-slate-800/90 shadow-xl shadow-black/20 hover:border-emerald-500/60'
-              : 'bg-white border-slate-200 shadow-xs hover:border-emerald-500 hover:shadow-sm'
+              ? 'bg-[#0B1424]/95 border-slate-800/90 shadow-xl shadow-black/20 hover:border-yellow-500/60'
+              : 'bg-white border-slate-200 shadow-xs hover:border-yellow-500 hover:shadow-sm'
           }`}
         >
-          {/* Subtle corner reticle accent */}
-          <div className={`absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 ${isDark ? 'border-emerald-400' : 'border-emerald-600'}`}></div>
-          <div className={`absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 ${isDark ? 'border-emerald-400' : 'border-emerald-600'}`}></div>
+          <div className="absolute top-2 right-2 z-10">
+            <YellowBlinkMockMark label="ESTIMATE" tooltip="Estimated commercial valuation using hypothetical $11,500/brief multiplier" variant="mini" />
+          </div>
+          <div className={`absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 ${isDark ? 'border-yellow-400' : 'border-yellow-600'}`}></div>
+          <div className={`absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 ${isDark ? 'border-yellow-400' : 'border-yellow-600'}`}></div>
 
           <div>
             <div className={`flex items-center justify-between text-xs font-mono ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
               <span className="uppercase tracking-wider font-semibold flex items-center gap-1.5">
-                <DollarSign className={`w-3.5 h-3.5 ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`} />
-                <span>Pipeline Diligence Value</span>
+                <DollarSign className={`w-3.5 h-3.5 ${isDark ? 'text-yellow-400' : 'text-amber-600'}`} />
+                <span>Estimated Pipeline Value</span>
               </span>
-              <div
-                className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-colors ${
-                  isDark
-                    ? 'bg-emerald-950/80 text-emerald-400 border-emerald-800/60 group-hover:border-emerald-400'
-                    : 'bg-emerald-50 text-emerald-700 border-emerald-200 group-hover:border-emerald-500'
-                }`}
-              >
-                <DollarSign className="w-4 h-4" />
-              </div>
             </div>
 
             <div className="my-3">
-              <div className={`text-3xl font-mono font-bold tabular-nums tracking-tight ${isDark ? 'text-white' : 'text-slate-950'}`}>
+              <div className={`text-3xl font-mono font-bold tabular-nums tracking-tight text-yellow-300`}>
                 ${pipelineValueUsd.toLocaleString()}
               </div>
-              <div className={`text-xs font-mono font-semibold mt-1 flex items-center gap-1.5 ${isDark ? 'text-emerald-400' : 'text-emerald-700'}`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-emerald-400' : 'bg-emerald-600'}`}></span>
-                <span>5 Commercial Scopes (Tiers 1–3)</span>
+              <div className={`text-xs font-mono font-semibold mt-1 flex items-center gap-1.5 text-yellow-400`}>
+                <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-ping"></span>
+                <span>{opportunities.length} Pipeline Deals ($11.5k Est.)</span>
               </div>
             </div>
           </div>
 
           <div className={`pt-3 border-t text-[11px] flex items-center justify-between font-mono ${isDark ? 'border-slate-800/80 text-slate-400' : 'border-slate-100 text-slate-500'}`}>
-            <span>Target Revenue First</span>
-            <span className={`font-semibold ${isDark ? 'text-emerald-400' : 'text-emerald-700'}`}>SLA: 24H Audit</span>
+            <span>Theoretical Fee Model</span>
+            <span className="font-semibold text-yellow-400">Hypothetical</span>
           </div>
         </div>
 
-        {/* KPI 3: Verified Decision Maker Coverage */}
+        {/* KPI 3: Decision-Maker Coverage */}
         <div
           className={`relative border rounded-2xl p-5 transition-all flex flex-col justify-between group overflow-hidden ${
             isDark
@@ -123,7 +116,6 @@ export const KpiMetricGrid: React.FC = () => {
               : 'bg-white border-slate-200 shadow-xs hover:border-sky-500 hover:shadow-sm'
           }`}
         >
-          {/* Subtle corner reticle accent */}
           <div className={`absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 ${isDark ? 'border-cyan-400' : 'border-sky-600'}`}></div>
           <div className={`absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 ${isDark ? 'border-cyan-400' : 'border-sky-600'}`}></div>
 
@@ -169,7 +161,6 @@ export const KpiMetricGrid: React.FC = () => {
               : 'bg-white border-slate-200 shadow-xs hover:border-amber-500 hover:shadow-sm'
           }`}
         >
-          {/* Subtle corner reticle accent */}
           <div className={`absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 ${isDark ? 'border-amber-400' : 'border-amber-600'}`}></div>
           <div className={`absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 ${isDark ? 'border-amber-400' : 'border-amber-600'}`}></div>
 
@@ -208,7 +199,7 @@ export const KpiMetricGrid: React.FC = () => {
         </div>
       </div>
 
-      {/* Secondary California Infrastructure Telemetry Ribbon (Geospatial Labs Grid Specifications) */}
+      {/* Secondary California Infrastructure Telemetry Ribbon */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 pt-1">
         <div
           className={`rounded-xl px-3.5 py-2.5 border flex items-center justify-between transition-colors ${
@@ -232,10 +223,10 @@ export const KpiMetricGrid: React.FC = () => {
           }`}
         >
           <div className="flex items-center gap-2">
-            <span className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-cyan-400' : 'bg-sky-600'}`}></span>
+            <YellowBlinkMockMark label="SIMULATED" tooltip="Substation average headroom is a planning model estimate, not real-time telemetry" variant="mini" />
             <span className={`text-[10px] font-mono uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Avg Substation Headroom</span>
           </div>
-          <span className={`text-xs font-mono font-bold ${isDark ? 'text-cyan-400' : 'text-sky-700'}`}>366 MW / POI</span>
+          <span className={`text-xs font-mono font-bold text-yellow-300`}>366 MW / POI</span>
         </div>
 
         <div

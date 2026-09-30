@@ -1,3 +1,4 @@
+import { YellowBlinkMockMark } from '../common/YellowBlinkMockMark';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import {
@@ -17,6 +18,7 @@ import {
   ChevronRight,
   Sun,
   Moon,
+  Inbox,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -36,6 +38,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenAcceptanceTest, onOpenHe
 
   const navItems = [
     { id: 'today', label: 'Today', icon: LayoutDashboard },
+    { id: 'requests', label: 'Requests Workspace', icon: Inbox, count: 1, highlight: true },
     { id: 'opportunities', label: 'Opportunities', icon: Zap, count: opportunities.length },
     { id: 'projects', label: 'Projects', icon: FolderGit2, count: projects.length, alert: conflictingCount > 0 },
     { id: 'evidence', label: 'Evidence Ledger', icon: FileSpreadsheet, count: evidence.length },
@@ -49,23 +52,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenAcceptanceTest, onOpenHe
     <aside
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`fixed top-0 left-0 z-40 h-screen bg-slate-950 text-slate-300 border-r border-slate-800 transition-all duration-300 ease-in-out flex flex-col justify-between select-none shadow-2xl ${
-        isHovered ? 'w-64' : 'w-16'
+      className={`fixed top-0 left-0 z-40 h-screen bg-slate-950 text-slate-300 border-r border-slate-800 transition-all duration-300 ease-in-out flex flex-col justify-between select-none ${
+        isHovered ? 'w-64 shadow-2xl shadow-black/80' : 'w-16'
       }`}
     >
-      {/* Top Brand Block */}
+      {/* Top Header Logo & Navigation */}
       <div>
-        <div className="h-16 flex items-center px-3.5 border-b border-slate-800/80 overflow-hidden">
+        {/* Logo Banner */}
+        <div className="h-16 flex items-center px-4 border-b border-slate-800">
           <button
             onClick={() => setActiveTab('today')}
-            className="flex items-center gap-3 text-left w-full focus:outline-none group"
+            className="flex items-center gap-3 w-full text-left overflow-hidden focus:outline-none"
           >
-            {/* Monogram Badge */}
-            <div className="w-9 h-9 rounded-md bg-slate-900 text-emerald-400 font-mono font-bold text-xs flex items-center justify-center border border-slate-700 shrink-0 group-hover:border-emerald-500 transition-colors shadow-sm">
-              GL
+            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/40 flex items-center justify-center shrink-0">
+              <Zap className="w-4 h-4 text-emerald-400" />
             </div>
-
-            {/* Expanded Brand Name */}
             <div
               className={`transition-opacity duration-200 whitespace-nowrap overflow-hidden ${
                 isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -75,7 +76,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenAcceptanceTest, onOpenHe
                 GEOSPATIAL LABS
               </span>
               <span className="text-[10px] text-emerald-400 font-mono block -mt-0.5">
-                Revenue Command Center
+                California BESS Control Plane
               </span>
             </div>
           </button>
@@ -171,8 +172,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenAcceptanceTest, onOpenHe
             <div className="bg-emerald-500 h-1.5 rounded-full" style={{ width: '80%' }}></div>
           </div>
           <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 pt-0.5">
-            <span>Diligence Value</span>
-            <span className="text-white font-bold">${pipelineValueUsd.toLocaleString()}</span>
+            <div className="flex items-center gap-1">
+              <span>Diligence Value</span>
+              <YellowBlinkMockMark label="EST." tooltip="Estimated Pipeline Value using hypothetical $11.5k tier" variant="mini" />
+            </div>
+            <span className="text-yellow-300 font-bold">${pipelineValueUsd.toLocaleString()}</span>
           </div>
         </div>
       )}
